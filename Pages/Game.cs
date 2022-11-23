@@ -14,12 +14,7 @@ namespace RazorPagesGame.Pages
         {
             Games = GameService.GetAll();
         }
-        
-        // public string GlutenFreeText(Game Game)
-        // {
-        //     return Game.IsGlutenFree ? "Gluten Free": "Not Gluten Free";
-        // }
-
+    
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
