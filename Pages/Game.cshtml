@@ -1,0 +1,64 @@
+﻿@page
+@using RazorPagesGame.Models
+@using RazorPagesGame.Services
+@model RazorPagesGame.Pages.GameModel
+
+@{
+    ViewData["Title"] = "OurGameList";
+}
+
+<h1>OurGameList 🎮</h1>
+<form method="post" class="card p-3">
+    <div class="row">
+        <div asp-validation-summary="All"></div>
+    </div>
+    <div class="form-group mb-0 align-middle">
+        <label asp-for="NewGame.Name">Name</label>
+        <input type="text" asp-for="NewGame.Name" class="mr-5">
+        <label asp-for="NewGame.Developer">Developer</label>
+        <input type="text" asp-for="NewGame.Developer" class="mr-5">
+        <label asp-for="NewGame.Player">Player</label>
+        <select asp-for="NewGame.Player" asp-items="Html.GetEnumSelectList<GamePlayer>()" class="mr-5"></select>
+        <label asp-for="NewGame.Years">Years</label>
+        <input type="text" asp-for="NewGame.Years" class="mr-5">
+        <label asp-for="NewGame.Description">Description</label>
+        <input type="text" asp-for="NewGame.Description" class="mr-5">
+        <label asp-for="NewGame.Genre">Genre</label>
+        <input type="text" asp-for="NewGame.Genre" class="mr-5">
+        <button class="btn btn-primary">Add</button>
+    </div>
+</form>
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Developer</th>
+            <th scope="col">Player</th>
+            <th scope="col">Years</th>
+            <th scope="col">Description</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    @foreach (var Game in Model.Games)
+    {
+        <tr>
+            <td>@Game.Name</td>
+            <td>@Game.Developer</td>
+            <td>@Game.Player</td>
+            <td>@Game.Years</td>
+            <td>@Game.Description</td>
+            <td>@Game.Genre</td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="id" value="@Game.Id" />
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
