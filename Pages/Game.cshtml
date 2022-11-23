@@ -50,8 +50,7 @@
             <td>@Game.Description</td>
             <td>@Game.Genre</td>
             <td>
-                <form method="post">
-                    <input type="hidden" name="id" value="@Game.Id" />
+                <form method="post" asp-page-handler="Delete" asp-route-id="@Game.Id">
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </td>
